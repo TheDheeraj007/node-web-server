@@ -16,10 +16,6 @@ fs.appendFile('server.log',req.url,(err)=>{
 next();
 })
 
-app.use((req,res)=>{
-  res.render('maintenance.hbs')
-});
-
 hbs.registerHelper('getCurrentHelper',()=>{
   return new Date().getFullYear();
 });
@@ -31,13 +27,20 @@ hbs.registerHelper('screamIt',(txt)=>{
 app.get('/',(req,res)=>{
 
 res.render('home.hbs',{
-    pageTitle: 'About Page',
+    pageTitle: 'Welcome Page',
     currentYear: new Date().getFullYear(),
     message:'Welcome User'
 });
 
 });
 
+app.get('/project', (req,res)=>{
+res.render('project.hbs',{
+      pageTitle: 'Project Page',
+      currentYear: new Date().getFullYear(),
+      message:'This is project page'
+})
+})
 
 app.get('/get',(req,res)=>{
 
